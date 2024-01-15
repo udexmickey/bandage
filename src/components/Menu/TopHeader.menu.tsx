@@ -1,57 +1,48 @@
 "use client";
 import React, { useState } from "react";
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  IconButton,
-  Button,
-  Popover,
-  Paper,
-  List,
-  ListItem,
-  ListItemText,
-  ListItemIcon,
-  Collapse,
-  Drawer,
-} from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
-import ShopIcon from "@mui/icons-material/Shop";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { AppBar, Toolbar, Typography, IconButton, Button } from "@mui/material";
 import SearchIconOutlined from "@mui/icons-material/SearchOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import AuthBreadcrumbs from "./Breadcrumbs/auth.menu.breadcrumbs";
+import useIsMobile from "@/hooks/useIsMobile";
+import MobileMenu from "./MobileMenu";
 
+// Defined TopMenu component
 const TopMenu = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [shopMenuOpen, setShopMenuOpen] = useState(false);
-  const anchorRef = React.useRef(null);
+  const { isMobile } = useIsMobile();
 
+  // Function to handle opening and closing of main menu
   const handleMenuToggle = () => {
     setMenuOpen((prevOpen) => !prevOpen);
   };
 
+  // Function to handle closing of all menus
   const handleMenuClose = () => {
     setMenuOpen(false);
     setShopMenuOpen(false);
   };
 
+  // Function to handle opening and closing of shop submenu
   const handleShopToggle = () => {
     setShopMenuOpen((prevOpen) => !prevOpen);
   };
 
+  // Styles for outlined icons
   const outlinedIconStyle = {
     color: "#23A6F0",
-    width: "16px",
-    height: "16px",
+    width: isMobile ? "1.875rem" : "16px",
+    height: isMobile ? "1.875rem" : "16px",
   };
 
   const outlinedIconNumberStyle = {
     color: "#23A6F0",
-    fontSize: "14px",
+    fontWeight: isMobile ? "normal" : "300",
+    fontSize: isMobile ? "1.5rem" : "14px",
   };
 
   // Array of menu items
@@ -68,7 +59,7 @@ const TopMenu = () => {
       }}
     >
       <Toolbar className="flex justify-between items-center">
-        <div className="flex justify-evenly  space-x-32">
+        <div className="flex justify-between items-center  space-x-32">
           {/* Logo */}
           <Typography
             variant="h6"
@@ -116,84 +107,19 @@ const TopMenu = () => {
           </IconButton>
         </div>
 
-        {/* Hamburger Menu */}
-        <div className="md:hidden">
-          <IconButton
-            color="inherit"
-            onClick={handleMenuToggle}
-            ref={anchorRef}
-            aria-controls={menuOpen ? "menu-list-grow" : undefined}
-            aria-haspopup="true"
-          >
-            <MenuIcon />
-          </IconButton>
-          <Drawer
-            anchor="top"
-            open={menuOpen}
-            onClose={handleMenuClose}
-            transitionDuration={500}
-          >
-            {/* </Drawer> */}
-
-            {/* <Popover
-            id="menu-list-grow"
-            anchorEl={anchorRef.current}
-            open={menuOpen}
-            onClose={handleMenuClose}
-            anchorOrigin={{
-              vertical: "bottom",
-              horizontal: "left",
-            }}
-            transformOrigin={{
-              vertical: "top",
-              horizontal: "left",
-            }}
-            style={{ width: "100%" }}
-          > */}
-            <Paper style={{ width: "100%" }}>
-              <List>
-                <ListItem button onClick={handleMenuClose}>
-                  Home
-                </ListItem>
-                <ListItem button onClick={() => handleShopToggle()}>
-                  <ListItemText primary="Shop" />
-                  {shopMenuOpen ? <ExpandLess /> : <ExpandMore />}
-                </ListItem>
-                {/* Array of menu items using map */}
-                {menuItems.map((item, index) => (
-                  <ListItem key={index} button onClick={handleMenuClose}>
-                    {item}
-                  </ListItem>
-                ))}
-              </List>
-
-              <div className="items-center space-x-4 md:hidden flex flex-col">
-                <AuthBreadcrumbs />
-                <IconButton color="inherit">
-                  <SearchIconOutlined style={outlinedIconStyle} />
-                </IconButton>
-                <IconButton
-                  color="inherit"
-                  sx={{
-                    position: "relative",
-                    display: "flex",
-                    alignItems: "center",
-                  }}
-                >
-                  <ShoppingCartOutlinedIcon style={outlinedIconStyle} />
-                  {/* Display cart count */}
-                  <span style={outlinedIconNumberStyle}>2</span>
-                </IconButton>
-                <IconButton color="inherit">
-                  <FavoriteBorderOutlinedIcon style={outlinedIconStyle} />
-                  {/* Display wishlist count */}
-                  <span style={outlinedIconNumberStyle}>3</span>
-                </IconButton>
-              </div>
-            </Paper>
-            {/* </Popover> */}
-          </Drawer>
-        </div>
+        {/* // Mobile Menu Drawer */}
+        {isMobile && (
+          <MobileMenu
+            menuOpen={menuOpen}
+            handleMenuToggle={handleMenuToggle}
+            handleMenuClose={handleMenuClose}
+            handleShopToggle={handleShopToggle}
+            shopMenuOpen={shopMenuOpen}
+            menuItems={menuItems}
+            outlinedIconStyle={outlinedIconStyle}
+            outlinedIconNumberStyle={outlinedIconNumberStyle}
+          />
+        )}
       </Toolbar>
     </AppBar>
   );
