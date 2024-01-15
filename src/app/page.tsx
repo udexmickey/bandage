@@ -1,4 +1,3 @@
-import NavigationMenu from "@/components/Menu/Navigation.menu";
 import TopMenu from "@/components/Menu/TopHeader.menu";
 import PromotionMenu from "@/components/Menu/promotion.menu";
 
@@ -18,8 +17,7 @@ export default function Home() {
         className="sm:top-0 md:top-[56px]"
       >
         {/* Top Menu */}
-        {/* <TopMenu /> */}
-        <NavigationMenu />
+        <TopMenu />
       </div>
     </div>
   );
