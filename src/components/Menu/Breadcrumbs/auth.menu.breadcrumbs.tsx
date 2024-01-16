@@ -15,12 +15,12 @@ export default function AuthBreadcrumbs() {
   return (
     <div
       onClick={handleClick}
-      className={`sm:font-normal ${isMobile ? "sm:text-3xl" : ""}`}
+      className={`sm:font-normal ${isMobile ? "sm:text-2xl" : ""}`}
     >
       <Breadcrumbs
         aria-label="breadcrumb"
         color="#23A6F0"
-        sx={{ fontSize: isMobile ? "1.875rem" : "14px" }}
+        sx={{ fontSize: isMobile ? "1.5rem" : "16px" }}
       >
         <Link
           underline="hover"
@@ -29,15 +29,15 @@ export default function AuthBreadcrumbs() {
           href="#"
           style={{
             fontWeight: isMobile ? "normal" : "300",
-            fontSize: isMobile ? "1.875rem" : "14px",
+            fontSize: isMobile ? "1.5rem" : "1rem",
           }}
         >
-          <div className={`sm:font-normal ${isMobile ? "sm:text-3xl" : ""}`}>
+          <div className={`sm:font-normal ${isMobile ? "sm:text-2xl" : ""}`}>
             <PersonOutlineOutlinedIcon
               sx={{
                 mr: 0.5,
                 fontWeight: isMobile ? "normal" : "300",
-                fontSize: isMobile ? "1.875rem" : "14px",
+                fontSize: isMobile ? "1.5rem" : "1rem",
               }}
               fontSize="inherit"
             />
@@ -51,7 +51,7 @@ export default function AuthBreadcrumbs() {
           href="#"
           style={{
             fontWeight: isMobile ? "normal" : "300",
-            fontSize: isMobile ? "1.875rem" : "14px",
+            fontSize: isMobile ? "1.5rem" : "1rem",
           }}
         >
           Register

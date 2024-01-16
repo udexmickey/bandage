@@ -11,6 +11,14 @@ const nextConfig = {
         pathname: "/docs/*",
       },
     ],
+    domains: ["https://images.unsplash.com/"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+        pathname: "/*",
+      },
+    ],
   },
   modularizeImports: {
     "@mui/icons-material": {

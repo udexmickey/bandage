@@ -70,7 +70,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
           </div>
 
           {/* Main Menu */}
-          <div className="items-center font-normal text-3xl justify-center w-full space-x-4 md:hidden flex flex-col">
+          <div className="items-center font-normal text-2xl justify-center w-full space-x-4 md:hidden flex flex-col">
             <List>
               <ListItem button onClick={handleMenuClose}>
                 Home
@@ -80,21 +80,21 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
                   primary="Shop"
                   primaryTypographyProps={{
                     fontWeight: "normal",
-                    fontSize: "1.875rem",
+                    fontSize: "1.5rem",
                   }}
                 />
                 {shopMenuOpen ? (
                   <ExpandLess
                     style={{
                       fontWeight: "normal",
-                      fontSize: "1.875rem",
+                      fontSize: "1.5rem",
                     }}
                   />
                 ) : (
                   <ExpandMore
                     sx={{
                       fontWeight: "normal",
-                      fontSize: "1.875rem",
+                      fontSize: "1.5rem",
                     }}
                   />
                 )}

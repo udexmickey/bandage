@@ -35,14 +35,15 @@ const TopMenu = () => {
   // Styles for outlined icons
   const outlinedIconStyle = {
     color: "#23A6F0",
-    width: isMobile ? "1.875rem" : "16px",
-    height: isMobile ? "1.875rem" : "16px",
+    // width: isMobile ? "1.5rem" : "16px",
+    // height: isMobile ? "1.5rem" : "16px",
+    fontSize: isMobile ? "1.5rem" : "1.5rem",
   };
 
   const outlinedIconNumberStyle = {
     color: "#23A6F0",
     fontWeight: isMobile ? "normal" : "300",
-    fontSize: isMobile ? "1.5rem" : "14px",
+    fontSize: isMobile ? "1.5rem" : "16px",
   };
 
   // Array of menu items
@@ -71,15 +72,21 @@ const TopMenu = () => {
           </Typography>
 
           {/* Menu Items */}
-          <div className="hidden md:flex justify-center items-center text-[#737373] bg-white">
-            <Button color="inherit">Home</Button>
-            <Button color="inherit" onClick={() => handleShopToggle()}>
+          <div className="hidden md:flex justify-center items-center text-base text-[#737373] bg-white">
+            <Button color="inherit" sx={{ fontSize: "1rem !important" }}>
+              Home
+            </Button>
+            <Button
+              color="inherit"
+              sx={{ fontSize: "inherit" }}
+              onClick={() => handleShopToggle()}
+            >
               Shop
               {shopMenuOpen ? <ExpandLess /> : <ExpandMore />}
             </Button>
             {/* Array of menu items using map */}
             {menuItems.map((item, index) => (
-              <Button color="inherit" key={index}>
+              <Button color="inherit" key={index} sx={{ fontSize: "inherit" }}>
                 {item}
               </Button>
             ))}
@@ -87,7 +94,7 @@ const TopMenu = () => {
         </div>
 
         {/* Icons: Login/Register, Search, Cart, Wishlist */}
-        <div className="items-center space-x-4 hidden md:flex ">
+        <div className="items-center text-2xl space-x-2 hidden md:flex ">
           <AuthBreadcrumbs />
           <IconButton color="inherit">
             <SearchIconOutlined style={outlinedIconStyle} />

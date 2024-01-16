@@ -34,8 +34,10 @@ const DesktopMenu: React.FC<DesktopMenuProps> = ({
       </Typography>
 
       {/* Menu Items */}
-      <div className="hidden md:flex justify-center items-center text-[#737373] bg-white">
-        <Button color="inherit">Home</Button>
+      <div className="hidden md:flex justify-center items-center text-base text-[#737373] bg-white">
+        <Button color="inherit" sx={{ fontSize: "1rem !important" }}>
+          Home
+        </Button>
         <Button color="inherit" onClick={handleShopToggle}>
           Shop
           {shopMenuOpen ? <ExpandLess /> : <ExpandMore />}
