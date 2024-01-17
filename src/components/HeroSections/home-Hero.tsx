@@ -1,3 +1,4 @@
+"use client";
 import * as React from "react";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
@@ -6,6 +7,7 @@ import furniture_1 from "/images/col-md-4.png";
 import furniture_2 from "/images/furniture-2.png";
 import furniture_3 from "/images/furniture-3.png";
 import furniture_4 from "/images/furniture-4.png";
+import useIsMobile from "@/hooks/useIsMobile";
 
 function srcset(
   image: string | StaticImageData,
@@ -23,25 +25,29 @@ function srcset(
 }
 
 export default function HomeHero() {
+  const { isMobile } = useIsMobile();
+  const mobileCols = isMobile ? 1 : 2;
+
   return (
     <ImageList
       sx={{
-        maxWidth: 1200,
+        maxWidth: "80rem",
         width: "100%",
-        minHeight: 540,
-        // gap: 4,
+        // minHeight: 540,
         height: "auto",
-      }} // Set gap here
+      }}
       variant="quilted"
-      cols={6}
-      rowHeight={121}
+      cols={isMobile ? 1 : 6}
+      rowHeight={130}
     >
       {itemData.map((item) => (
         <ImageListItem
           key={item.title}
-          cols={item.cols || 1}
-          rows={item.rows || 1}
-          sx={{ margin: ".5rem" }} // Add margin for gap
+          cols={isMobile ? mobileCols : item.cols || 1}
+          rows={isMobile ? 2 : item.rows || 1}
+          sx={{
+            margin: ".5rem",
+          }}
         >
           <Image
             {...srcset(item.img, 121, item.rows, item.cols)}
@@ -50,7 +56,6 @@ export default function HomeHero() {
             width={400}
             height={200}
             title={item.title}
-            // className="object-cover"
           />
         </ImageListItem>
       ))}
