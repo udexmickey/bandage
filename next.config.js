@@ -19,6 +19,14 @@ const nextConfig = {
         pathname: "/*",
       },
     ],
+    domains: ["https://cdn.dummyjson.com/product-images/"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "cdn.dummyjson.com",
+        pathname: "/product-images/*",
+      },
+    ],
   },
   modularizeImports: {
     "@mui/icons-material": {
